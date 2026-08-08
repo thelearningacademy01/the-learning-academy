@@ -1,1 +1,174 @@
-<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#173b7a"><title>THE LEARNING ACADEMY</title><link rel="stylesheet" href="style.css"></head><body><div id="app"></div><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE LEARNING ACADEMY - BY AMIT SIR</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
+header{background:#123f8c;color:white;padding:18px;text-align:center}
+header h1{margin:0;font-size:25px}
+header p{margin:5px 0 0}
+nav{display:flex;justify-content:space-around;background:white;padding:12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #bbb}
+nav button{border:0;background:none;font-weight:bold;color:#123f8c}
+main{padding:18px;max-width:1100px;margin:auto}
+.hero{background:#123f8c;color:white;padding:25px;border-radius:18px;margin-bottom:20px}
+.hero h2{font-size:28px;margin:0 0 10px}
+.search{width:100%;padding:14px;border:1px solid #ddd;border-radius:10px;margin:15px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:15px}
+.card{background:white;padding:18px;border-radius:15px;box-shadow:0 3px 12px #ddd}
+.card h3{margin:5px 0}
+.price{font-size:22px;font-weight:bold;color:#123f8c}
+button.buy{background:#123f8c;color:white;border:0;padding:11px 18px;border-radius:8px;cursor:pointer}
+button.buy:hover{background:#0b2d67}
+.badge{display:inline-block;background:#e7f0ff;color:#123f8c;padding:5px 9px;border-radius:20px;font-size:12px}
+.section{display:none}
+.section.active{display:block}
+.live{border-left:5px solid red}
+footer{text-align:center;background:#123f8c;color:white;padding:20px;margin-top:30px}
+.comment{background:white;padding:12px;border-radius:10px;margin:10px 0}
+textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>THE LEARNING ACADEMY</h1>
+<p>BY AMIT SIR • Class 6th to 12th</p>
+</header>
+
+<nav>
+<button onclick="show('home')">🏠 Home</button>
+<button onclick="show('courses')">📚 Courses</button>
+<button onclick="show('live')">🔴 Live</button>
+<button onclick="show('recorded')">🎥 Recorded</button>
+<button onclick="show('profile')">👤 Profile</button>
+</nav>
+
+<main>
+
+<section id="home" class="section active">
+<div class="hero">
+<h2>Welcome to THE LEARNING ACADEMY</h2>
+<p>Online Classes • Recorded Classes • Notes • Live Classes</p>
+<button class="buy" onclick="show('courses')">View Courses</button>
+</div>
+
+<h2>📚 Our Courses</h2>
+<div class="grid">
+<div class="card"><span class="badge">Class 6–8</span><h3>All Subjects</h3><p class="price">₹399</p><button class="buy" onclick="show('courses')">View Course</button></div>
+<div class="card"><span class="badge">Class 9</span><h3>All Subjects</h3><p class="price">₹499</p><button class="buy" onclick="show('courses')">View Course</button></div>
+<div class="card"><span class="badge">Class 10</span><h3>All Subjects</h3><p class="price">₹599</p><button class="buy" onclick="show('courses')">View Course</button></div>
+<div class="card"><span class="badge">Class 11 Arts/Science</span><h3>Full Course</h3><p class="price">₹699</p><button class="buy" onclick="show('courses')">View Course</button></div>
+<div class="card"><span class="badge">Class 12 Arts</span><h3>Full Course</h3><p class="price">₹799</p><button class="buy" onclick="show('courses')">View Course</button></div>
+<div class="card"><span class="badge">Class 12 Science</span><h3>Full Course</h3><p class="price">₹799</p><button class="buy" onclick="show('courses')">View Course</button></div>
+</div>
+</section>
+
+<section id="courses" class="section">
+<h2>📚 All Courses</h2>
+<input class="search" id="search" placeholder="Search course..." onkeyup="filterCourses()">
+
+<div class="grid" id="courseList">
+
+<div class="card course"><span class="badge">Class 6–8</span><h3>All Subjects Class 6–8</h3><p class="price">₹399</p><p>Complete course</p><button class="buy" onclick="buy('Class 6–8 All Subjects','399')">View / Buy</button></div>
+
+<div class="card course"><span class="badge">Class 9</span><h3>Mathematics Class 9</h3><p class="price">₹99</p><p>Single Subject</p><button class="buy" onclick="buy('Mathematics Class 9','99')">View / Buy</button></div>
+
+<div class="card course"><span class="badge">Class 9</span><h3>All Subjects Class 9</h3><p class="price">₹499</p><p>Full Course</p><button class="buy" onclick="buy('All Subjects Class 9','499')">View / Buy</button></div>
+
+<div class="card course"><span class="badge">Class 10</span><h3>Any Subject Class 10</h3><p class="price">₹99</p><p>Single Subject</p><button class="buy" onclick="buy('Class 10 Single Subject','99')">View / Buy</button></div>
+
+<div class="card course"><span class="badge">Class 10</span><h3>All Subjects Class 10</h3><p class="price">₹599</p><p>Full Course</p><button class="buy" onclick="buy('All Subjects Class 10','599')">View / Buy</button></div>
+
+<div class="card course"><span class="badge">Class 11 Arts/Science</span><h3>Single Subject</h3><p class="price">₹149</p><p>Choose your subject</p><button class="buy" onclick="buy('Class 11 Single Subject','149')">View / Buy</button></div>
+
+<div class="card course"><span class="badge">Class 11 Arts/Science</span><h3>All Subjects</h3><p class="price">₹699</p><p>Full Course</p><button class="buy" onclick="buy('Class 11 Full Course','699')">View / Buy</button></div>
+
+<div class="card course"><span class="badge">Class 12 Arts</span><h3>Single Subject</h3><p class="price">₹199</p><p>Choose your subject</p><button class="buy" onclick="buy('Class 12 Arts Single Subject','199')">View / Buy</button></div>
+
+<div class="card course"><span class="badge">Class 12 Arts</span><h3>All Subjects</h3><p class="price">₹799</p><p>Full Course</p><button class="buy" onclick="buy('Class 12 Arts Full Course','799')">View / Buy</button></div>
+
+<div class="card course"><span class="badge">Class 12 Science</span><h3>Single Subject</h3><p class="price">₹199</p><p>Choose your subject</p><button class="buy" onclick="buy('Class 12 Science Single Subject','199')">View / Buy</button></div>
+
+<div class="card course"><span class="badge">Class 12 Science</span><h3>All Subjects</h3><p class="price">₹799</p><p>Full Course</p><button class="buy" onclick="buy('Class 12 Science Full Course','799')">View / Buy</button></div>
+
+</div>
+</section>
+
+<section id="live" class="section">
+<h2>🔴 Live Classes</h2>
+<div class="card live">
+<h3>Live Class Schedule</h3>
+<p>Live classes will appear here.</p>
+<p><b>Teacher:</b> Amit Sir</p>
+<button class="buy" onclick="alert('Live class link will be added here.')">Join Live Class</button>
+</div>
+</section>
+
+<section id="recorded" class="section">
+<h2>🎥 Recorded Classes</h2>
+<div class="grid">
+<div class="card"><h3>Class 10 Mathematics</h3><p>Recorded video lessons</p><button class="buy" onclick="alert('Please purchase the course first.')">Watch Class</button></div>
+<div class="card"><h3>Class 10 Hindi</h3><p>Recorded video lessons</p><button class="buy" onclick="alert('Please purchase the course first.')">Watch Class</button></div>
+<div class="card"><h3>Class 12 Arts</h3><p>Recorded video lessons</p><button class="buy" onclick="alert('Please purchase the course first.')">Watch Class</button></div>
+</div>
+</section>
+
+<section id="profile" class="section">
+<h2>👤 Student Profile</h2>
+<div class="card">
+<h3>Student Login</h3>
+<input class="search" placeholder="Enter mobile number">
+<input class="search" placeholder="Enter name">
+<button class="buy" onclick="alert('Login system will be connected next.')">Login / Signup</button>
+</div>
+
+<h2>💬 Comments</h2>
+<div class="card">
+<textarea id="comment" rows="4" placeholder="Write your comment..."></textarea><br><br>
+<button class="buy" onclick="addComment()">Post Comment</button>
+<div id="comments"></div>
+</div>
+</section>
+
+</main>
+
+<footer>
+THE LEARNING ACADEMY • BY AMIT SIR<br>
+Class 6th to 12th
+</footer>
+
+<script>
+function show(id){
+document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+window.scrollTo(0,0);
+}
+
+function buy(course,price){
+alert('Course: '+course+'\\nPrice: ₹'+price+'\\n\\nPayment system will be connected next.');
+}
+
+function filterCourses(){
+let q=document.getElementById('search').value.toLowerCase();
+document.querySelectorAll('.course').forEach(c=>{
+c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none';
+});
+}
+
+function addComment(){
+let text=document.getElementById('comment').value.trim();
+if(!text)return;
+let d=document.createElement('div');
+d.className='comment';
+d.innerText='Student: '+text;
+document.getElementById('comments').prepend(d);
+document.getElementById('comment').value='';
+}
+</script>
+
+</body>
+</html>
